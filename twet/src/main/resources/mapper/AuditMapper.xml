@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caijue.twet.mapper.AuditMapper">
+
+    <resultMap id="BaseResultMap" type="com.caijue.twet.pojo.Audit">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="tId" column="t_id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="result" column="result" jdbcType="BIGINT"/>
+            <result property="reason" column="reason" jdbcType="VARCHAR"/>
+            <result property="garde" column="garde" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,t_id,user_id,
+        result,reason,garde,
+        create_time,update_time
+    </sql>
+</mapper>

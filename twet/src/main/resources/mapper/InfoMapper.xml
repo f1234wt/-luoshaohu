@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caijue.twet.mapper.InfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.caijue.twet.pojo.Info">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="tName" column="t_name" jdbcType="VARCHAR"/>
+            <result property="tImage" column="t_image" jdbcType="VARCHAR"/>
+            <result property="tCardid" column="t_cardid" jdbcType="VARCHAR"/>
+            <result property="tCardImage" column="t_card_image" jdbcType="VARCHAR"/>
+            <result property="tAddress" column="t_address" jdbcType="VARCHAR"/>
+            <result property="tAge" column="t_age" jdbcType="BIGINT"/>
+            <result property="tHeight" column="t_height" jdbcType="BIGINT"/>
+            <result property="armsKind" column="arms_kind" jdbcType="VARCHAR"/>
+            <result property="armsAge" column="arms_age" jdbcType="BIGINT"/>
+            <result property="education" column="education" jdbcType="VARCHAR"/>
+            <result property="driverAge" column="driver_age" jdbcType="BIGINT"/>
+            <result property="driverImage" column="driver_image" jdbcType="VARCHAR"/>
+            <result property="divingImage" column="diving_image" jdbcType="VARCHAR"/>
+            <result property="carModel" column="car_model" jdbcType="VARCHAR"/>
+            <result property="tPhone" column="t_phone" jdbcType="VARCHAR"/>
+            <result property="skill1" column="skill1" jdbcType="VARCHAR"/>
+            <result property="skill2" column="skill2" jdbcType="VARCHAR"/>
+            <result property="skill3" column="skill3" jdbcType="VARCHAR"/>
+            <result property="skill4" column="skill4" jdbcType="VARCHAR"/>
+            <result property="garde" column="garde" jdbcType="VARCHAR"/>
+            <result property="result" column="result" jdbcType="BIGINT"/>
+            <result property="tLike" column="t_like" jdbcType="VARCHAR"/>
+            <result property="ownAppraise" column="own_appraise" jdbcType="VARCHAR"/>
+            <result property="score" column="score" jdbcType="DOUBLE"/>
+            <result property="serviceMotto" column="service_motto" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,t_name,t_image,
+        t_cardid,t_card_image,t_address,
+        t_age,t_height,arms_kind,
+        arms_age,education,driver_age,
+        driver_image,diving_image,car_model,
+        t_phone,skill1,skill2,
+        skill3,skill4,price_id,
+        audit_result,t_like,own_appraise,
+        score,service_motto,create_time,
+        update_time
+    </sql>
+
+    <select id="score" resultType="com.caijue.twet.util.Score" parameterType="java.util.Map">
+        SELECT i.t_id,o.score FROM twet_info i,twet_order o,twet_order_item oi
+        WHERE i.t_id=oi.t_id AND o.order_no=oi.order_no AND
+            i.result=#{result} AND o.order_status=#{orderStatus}
+          and i.t_id=#{tId}
+    </select>
+</mapper>
